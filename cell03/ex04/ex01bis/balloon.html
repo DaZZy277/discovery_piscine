@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Effect with jQuery</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div id="balloon"></div>
+
+<script>
+    $(document).ready(function() {
+        let currentSize = 200;
+        let colorIndex = 0;
+        const colors = ['red', 'green', 'blue']; 
+
+        $('#balloon').on('click', function() {
+            if (currentSize >= 420) {
+                currentSize = 200;
+                colorIndex = 0;
+            } else {
+                currentSize += 10;
+            }
+
+            $(this).css({
+                'width': currentSize + 'px',
+                'height': currentSize + 'px',
+                'background-color': colors[(colorIndex + 1) % colors.length]
+            });
+
+            colorIndex = (colorIndex + 1) % colors.length;
+        });
+
+        $('#balloon').on('mouseleave', function() {
+            if (currentSize > 200) {
+                currentSize -= 5;
+            }
+
+            $(this).css({
+                'width': currentSize + 'px',
+                'height': currentSize + 'px',
+                'background-color': colors[(colorIndex - 1 + colors.length) % colors.length]
+            });
+
+            colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+        });
+
+        $('#balloon').on('mouseenter', function() {
+            $(this).css('background-color', colors[colorIndex]);
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 20%;   
+            padding : 10%;
+            margin-top :20px;
+
+        }
+
+        .container{
+            display:  flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+        <h1 style="text-align: center;">Calculator</h1>
+        <div class="container">
+        
+        <input type ="" id = "num1" placeholder="Number1">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type ="text" id = "num2" placeholder="Number2">
+        </div>
+        <button id ="submit" onclick="calculate()" >Try me!</button>
+        <p style="text-align: center;">output</p>
+        <input id="output" readonly >
+
+    <script>
+
+        function calculate(){
+            let num1 = parseInt(document.getElementById("num1").value) ;
+            let num2 = parseInt(document.getElementById("num2").value) ;
+            let operator = document.getElementById("operator").value;
+            let output = document.getElementById("output");
+
+            if(num1>=0 && num2>=0 ){
+                let result;
+
+                if (operator == "+") {
+                    result = num1 + num2;
+                } else if (operator == "-") {
+                    result = num1 - num2;
+                } else if (operator == "*") {
+                    result = num1 * num2;
+                } else if (operator == "/") {
+                    if (num2 !== 0) {
+                        result = num1 / num2;
+                    } else {
+                        alert("it's over 9000!!");
+                    }
+                } else if (operator == "%") {
+                    result = num1 % num2;
+                    }
+                    
+                    else {
+                    alert("Error :(");
+                    }output.value = result;
+                    console.log(result);
+
+            }
+            
+        }
+    </script>
+</body>
+</html>

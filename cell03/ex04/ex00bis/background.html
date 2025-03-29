@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Background Color On Click</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+  </head>
+  <body>
+    <button id="btn">Click Me</button>
+    <script>
+    $(document).ready(function() {
+      $('#btn').on('click', function() {
+        let randomNum = () => Math.floor(Math.random() * 256);
+        let randomColor = `rgb(${randomNum()},${randomNum()},${randomNum()})`;
+        $('body').css('background-color', randomColor);
+      });
+    });</script>
+  </body>
+</html>

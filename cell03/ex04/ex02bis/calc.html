@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 20%;   
+            padding : 10%;
+            margin-top :20px;
+        }
+
+        .container{
+            display:  flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">Calculator</h1>
+    <div class="container">
+        <input type="text" id="num1" placeholder="Number 1">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="num2" placeholder="Number 2">
+    </div>
+    <button id="submit">Try me!</button>
+    <p style="text-align: center;">Output</p>
+    <input id="output" readonly>
+
+    <script>
+        
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                let num1  = $('#num1').val();
+                let num2 = $('#num2').val();
+                let operator = $('#operator').val();
+                let output = $('#output');
+
+                if (num1>=0 && num2>=0 && !isNaN(num1) && !isNaN(num2)) {
+                    let result;
+                    switch(operator) {
+                        case '+':
+                            result = num1 + num2;
+                            break;
+                        case '-':
+                            result = num1 - num2;
+                            break;
+                        case '*':
+                            result = num1 * num2;
+                            break;
+                        case '/':
+                            if (num2 !== 0) {
+                                result = num1 / num2;
+                            } else {
+                                alert("It's over 9000!!");
+                                return;
+                            }
+                            break;
+                        case '%':
+                            result = num1 % num2;
+                            break;
+                        default:
+                            alert("Error :(");
+                            return;
+                    }
+                    output.val(result);
+                    console.log(result);
+                } else {
+                    alert("Error :(");
+                }
+            });
+        });
+
+        setInterval(() => {
+            alert('Please, use me...');
+        }, 30000);     
+    </script>
+</body>
+</html>
